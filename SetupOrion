@@ -128,15 +128,15 @@ creditos_msg() {
     echo -e "$amarelo=                                    I9 Tech Soluções Tecnológicas                                       $amarelo=\e[0m"
     echo -e "$amarelo=           $branco Gostaria de contribuir para continuarmos o desenvolvimento deste projeto?            $amarelo=\e[0m"
     echo -e "$amarelo=                              $branco Você pode fazer uma doação via PIX:                               $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
     echo -e "$amarelo=                                     $amarelo pix@i9techbr.xyz                                          $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
     echo -e "$amarelo=          $branco Ou faça parte da nossa comunidade VIP no Discord e contribua com o projeto            $amarelo=\e[0m"
     echo -e "$amarelo=                       $branco Nossa comunidade:$amarelo https://join.i9techbr.xyz                      $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
     echo -e "$amarelo=                                   $branco Nossos grupos no WhatsApp                                    $amarelo=\e[0m"
     echo -e "$amarelo=      $amarelo https://i9techbr.xyz/whatsapp $branco<-- ou -->$amarelo https://i9techbr.xyz/whatsapp2   $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
     echo -e "$amarelo===================================================================================================\e[0m"
     echo ""
     echo ""
@@ -2995,7 +2995,7 @@ Link do Portainer: $url_portainer
 Obrigado por utilizar nosso AutoInstalador.
 Caso esse conteudo foi util, não deixe de apoiar nosso projeto.
 
-pix@oriondesign.art.br
+pix@i9techbr.xyz
 
 Bebam água!
 EOL
