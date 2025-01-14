@@ -5263,7 +5263,7 @@ services:
       ## Pegue a versão em: https://wppconnect.io/pt-BR/whatsapp-versions/
       - CONFIG_SESSION_PHONE_VERSION=2.3000.1015901307
       - CONFIG_SESSION_PHONE_CLIENT=I9 Tech API V2
-      - CONFIG_SESSION_PHONE_NAME=Chrome (Linux)
+      - CONFIG_SESSION_PHONE_NAME=Google Chrome (Linux)
       
       ## Configuração do Banco de Dados
       - DATABASE_ENABLED=true
