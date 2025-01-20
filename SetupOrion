@@ -5242,7 +5242,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
   evolution${1:+_$1}:
-    image: atendai/evolution-api:1.8.2 ## Versão da Evolution API
+    image: atendai/evolution-api:v1.8.2 ## Versão da Evolution API
 
     volumes:
       - evolution${1:+_$1}_instances:/evolution/instances
