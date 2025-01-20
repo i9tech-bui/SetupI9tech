@@ -5242,7 +5242,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
   evolution${1:+_$1}:
-    image: atendai/evolution-api:latest ## Versão da Evolution API
+    image: atendai/evolution-api:1.8.2 ## Versão da Evolution API
 
     volumes:
       - evolution${1:+_$1}_instances:/evolution/instances
@@ -5262,7 +5262,7 @@ services:
       ## Configuração do Cliente
       ## Pegue a versão em: https://wppconnect.io/pt-BR/whatsapp-versions/
       - CONFIG_SESSION_PHONE_VERSION=2.3000.1015901307
-      - CONFIG_SESSION_PHONE_CLIENT=I9 Tech API V2
+      - CONFIG_SESSION_PHONE_CLIENT=API WHATSZAP
       - CONFIG_SESSION_PHONE_NAME=Google Chrome (Linux)
       
       ## Configuração do Banco de Dados
