@@ -3172,11 +3172,11 @@ services:
       - "--providers.docker.endpoint=unix:///var/run/docker.sock"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=$nome_rede_interna" ## Nome da rede interna
-      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.address=:8080"
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
-      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.address=:4433"
       - "--entrypoints.web.transport.respondingTimeouts.idleTimeout=3600"
       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=web"
@@ -3196,11 +3196,11 @@ services:
       - $nome_rede_interna ## Nome da rede interna
 
     ports:
-      - target: 80
-        published: 80
+      - target: 8080
+        published: 8080
         mode: host
-      - target: 443
-        published: 443
+      - target: 4433
+        published: 4433
         mode: host
 
     deploy:
@@ -5307,7 +5307,7 @@ services:
       - S3_ACCESS_KEY=
       - S3_SECRET_KEY=
       - S3_BUCKET=evolution
-      - S3_PORT=443
+      - S3_PORT=4433
       - S3_ENDPOINT=
       - S3_USE_SSL=true
       #- S3_REGION=eu-south
@@ -8226,7 +8226,7 @@ services:
       labels:
           - traefik.enable=true
           - traefik.http.routers.pgadmin${1:+_$1}.rule=Host(\`$url_PgAdmin_4\`) ## Url da Ferramenta
-          - traefik.http.services.pgadmin${1:+_$1}.loadbalancer.server.port=80
+          - traefik.http.services.pgadmin${1:+_$1}.loadbalancer.server.port=8080
           - traefik.http.routers.pgadmin${1:+_$1}.service=pgadmin${1:+_$1}
           - traefik.http.routers.pgadmin${1:+_$1}.tls.certresolver=letsencryptresolver
           - traefik.http.routers.pgadmin${1:+_$1}.entrypoints=websecure
@@ -8502,7 +8502,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.nocobase${1:+_$1}.rule=Host(\`$url_nocobase\`) ## Url da aplicação
-        - traefik.http.services.nocobase${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.nocobase${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.nocobase${1:+_$1}.service=nocobase${1:+_$1}
         - traefik.http.routers.nocobase${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.nocobase${1:+_$1}.entrypoints=websecure
@@ -9023,7 +9023,7 @@ services:
         - traefik.http.routers.wordpress_$nome_site_wordpress.entrypoints=websecure
         - traefik.http.routers.wordpress_$nome_site_wordpress.tls.certresolver=letsencryptresolver
         - traefik.http.routers.wordpress_$nome_site_wordpress.service=wordpress_$nome_site_wordpress
-        - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.server.port=80
+        - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.server.port=8080
         - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -9376,7 +9376,7 @@ services:
       - BASEROW_PUBLIC_URL=https://$url_baserow
 
       ## Porta do baserow
-      - BASEROW_CADDY_ADDRESSES=:80
+      - BASEROW_CADDY_ADDRESSES=:8080
 
       ## Dados SMTP
       - EMAIL_SMTP=true ## Ativar/Desativar SMTP
@@ -9406,7 +9406,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.baserow${1:+_$1}.rule=Host(\`$url_baserow\`)
-        - traefik.http.services.baserow${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.baserow${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.baserow${1:+_$1}.service=baserow${1:+_$1}
         - traefik.http.routers.baserow${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.baserow${1:+_$1}.entrypoints=websecure
@@ -10654,7 +10654,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.mautic${1:+_$1}.rule=Host(\`$url_mautic\`) # substitua SeuDominio.com.br pelo seu domínio
-        - traefik.http.services.mautic${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.mautic${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.mautic${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.mautic${1:+_$1}.service=mautic${1:+_$1}
         - traefik.http.routers.mautic${1:+_$1}.tls.certresolver=letsencryptresolver
@@ -10985,7 +10985,7 @@ services:
         - traefik.http.routers.appsmith${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.appsmith${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.appsmith${1:+_$1}.service=appsmith${1:+_$1}
-        - traefik.http.services.appsmith${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.appsmith${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.services.appsmith${1:+_$1}.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -17380,7 +17380,7 @@ services:
       - $nome_rede_interna
 
     #ports:
-    #  - 1973:80
+    #  - 1973:8080
 
     environment:
       ## Dominio do Dashboard
@@ -17411,7 +17411,7 @@ services:
         - "traefik.http.routers.vaultwarden${1:+_$1}.rule=Host(\`$url_vaultwarden\`)"
         - "traefik.http.routers.vaultwarden${1:+_$1}.service=vaultwarden${1:+_$1}"
         - "traefik.http.routers.vaultwarden${1:+_$1}.entrypoints=websecure"
-        - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.server.port=80"
+        - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.server.port=8080"
         - "traefik.http.routers.vaultwarden${1:+_$1}.tls=true"
         - "traefik.http.routers.vaultwarden${1:+_$1}.tls.certresolver=letsencryptresolver"
         - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.passhostheader=true"
@@ -17662,7 +17662,7 @@ services:
       - $nome_rede_interna
 
     #ports:
-    #  - 8282:80
+    #  - 8282:8080
 
     environment:
       ## Dados de acesso:
@@ -17691,7 +17691,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.nextcloud${1:+_$1}.rule=Host(\`$url_nextcloud\`)
-        - traefik.http.services.nextcloud${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.nextcloud${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.nextcloud${1:+_$1}.service=nextcloud${1:+_$1}
         - traefik.http.routers.nextcloud${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.nextcloud${1:+_$1}.entrypoints=web,websecure
@@ -18248,7 +18248,7 @@ services:
         - traefik.http.routers.phpmyadmin${1:+_$1}.rule=Host(\`$url_phpmyadmin\`)
         - traefik.http.routers.phpmyadmin${1:+_$1}.entrypoints=web,websecure
         - traefik.http.routers.phpmyadmin${1:+_$1}.tls.certresolver=letsencryptresolver
-        - traefik.http.services.phpmyadmin${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.phpmyadmin${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.phpmyadmin${1:+_$1}.service=phpmyadmin${1:+_$1}
 
 ## --------------------------- ORION --------------------------- ##
@@ -19712,7 +19712,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.ntfy${1:+_$1}.rule=Host(\`$url_ntfy\`)
-        - traefik.http.services.ntfy${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.ntfy${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.routers.ntfy${1:+_$1}.service=ntfy${1:+_$1}
         - traefik.http.routers.ntfy${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.ntfy${1:+_$1}.entrypoints=websecure
@@ -21335,7 +21335,7 @@ services:
         - traefik.http.routers.humhub${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.humhub${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.humhub${1:+_$1}.service=humhub${1:+_$1}
-        - traefik.http.services.humhub${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.humhub${1:+_$1}.loadbalancer.server.port=8080
         - traefik.http.services.humhub${1:+_$1}.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -21605,7 +21605,7 @@ services:
         - traefik.http.routers.yourls${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.yourls${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.yourls${1:+_$1}.service=yourls${1:+_$1}
-        - traefik.http.services.yourls${1:+_$1}.loadbalancer.server.port=80
+        - traefik.http.services.yourls${1:+_$1}.loadbalancer.server.port=8080
 
 ## --------------------------- ORION --------------------------- ##
 
