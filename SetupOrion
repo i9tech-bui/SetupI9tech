@@ -125,18 +125,18 @@ creditos_msg() {
     echo ""
     echo ""
     echo -e "$amarelo===================================================================================================\e[0m"
-    echo -e "$amarelo=                                    I9 Tech Soluções Tecnológicas                                       $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
     echo -e "$amarelo=           $branco Gostaria de contribuir para continuarmos o desenvolvimento deste projeto?            $amarelo=\e[0m"
     echo -e "$amarelo=                              $branco Você pode fazer uma doação via PIX:                               $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
-    echo -e "$amarelo=                                     $amarelo pix@i9techbr.xyz                                          $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
+    echo -e "$amarelo=                                     $amarelo pix@oriondesign.art.br                                     $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
     echo -e "$amarelo=          $branco Ou faça parte da nossa comunidade VIP no Discord e contribua com o projeto            $amarelo=\e[0m"
-    echo -e "$amarelo=                       $branco Nossa comunidade:$amarelo https://join.i9techbr.xyz                      $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
+    echo -e "$amarelo=                       $branco Nossa comunidade:$amarelo https://join.oriondesign.art.br                        $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
     echo -e "$amarelo=                                   $branco Nossos grupos no WhatsApp                                    $amarelo=\e[0m"
-    echo -e "$amarelo=      $amarelo https://i9techbr.xyz/whatsapp $branco<-- ou -->$amarelo https://i9techbr.xyz/whatsapp2   $amarelo=\e[0m"
-    echo -e "$amarelo=                                                                                                        $amarelo=\e[0m"
+    echo -e "$amarelo=      $amarelo https://oriondesign.art.br/whatsapp2 $branco<-- ou -->$amarelo https://oriondesign.art.br/whatsapp3      $amarelo=\e[0m"
+    echo -e "$amarelo=                                                                                                 $amarelo=\e[0m"
     echo -e "$amarelo===================================================================================================\e[0m"
     echo ""
     echo ""
@@ -2995,7 +2995,7 @@ Link do Portainer: $url_portainer
 Obrigado por utilizar nosso AutoInstalador.
 Caso esse conteudo foi util, não deixe de apoiar nosso projeto.
 
-pix@i9techbr.xyz
+pix@oriondesign.art.br
 
 Bebam água!
 EOL
@@ -3172,11 +3172,11 @@ services:
       - "--providers.docker.endpoint=unix:///var/run/docker.sock"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=$nome_rede_interna" ## Nome da rede interna
-      - "--entrypoints.web.address=:8080"
+      - "--entrypoints.web.address=:80"
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
-      - "--entrypoints.websecure.address=:4433"
+      - "--entrypoints.websecure.address=:443"
       - "--entrypoints.web.transport.respondingTimeouts.idleTimeout=3600"
       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=web"
@@ -3196,11 +3196,11 @@ services:
       - $nome_rede_interna ## Nome da rede interna
 
     ports:
-      - target: 8080
-        published: 8080
+      - target: 80
+        published: 80
         mode: host
-      - target: 4433
-        published: 4433
+      - target: 443
+        published: 443
         mode: host
 
     deploy:
@@ -5128,7 +5128,7 @@ while true; do
 
     ##Pergunta o Dominio para aplicação
     echo -e "\e[97mPasso$amarelo 1/1\e[0m"
-    echo -en "\e[33mDigite o Dominio para a Evolution API (ex: api.gestori9.top): \e[0m" && read -r url_evolution
+    echo -en "\e[33mDigite o Dominio para a Evolution API (ex: api.oriondesign.art.br): \e[0m" && read -r url_evolution
     echo ""
 
     ## Limpa o terminal
@@ -5242,7 +5242,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
   evolution${1:+_$1}:
-    image: atendai/evolution-api:v1.8.2 ## Versão da Evolution API
+    image: atendai/evolution-api:latest ## Versão da Evolution API
 
     volumes:
       - evolution${1:+_$1}_instances:/evolution/instances
@@ -5262,8 +5262,8 @@ services:
       ## Configuração do Cliente
       ## Pegue a versão em: https://wppconnect.io/pt-BR/whatsapp-versions/
       - CONFIG_SESSION_PHONE_VERSION=2.3000.1015901307
-      - CONFIG_SESSION_PHONE_CLIENT=API WHATSZAP
-      - CONFIG_SESSION_PHONE_NAME=Google Chrome (Linux)
+      - CONFIG_SESSION_PHONE_CLIENT=OrionDesign
+      - CONFIG_SESSION_PHONE_NAME=Chrome
       
       ## Configuração do Banco de Dados
       - DATABASE_ENABLED=true
@@ -5307,7 +5307,7 @@ services:
       - S3_ACCESS_KEY=
       - S3_SECRET_KEY=
       - S3_BUCKET=evolution
-      - S3_PORT=4433
+      - S3_PORT=443
       - S3_ENDPOINT=
       - S3_USE_SSL=true
       #- S3_REGION=eu-south
@@ -8226,7 +8226,7 @@ services:
       labels:
           - traefik.enable=true
           - traefik.http.routers.pgadmin${1:+_$1}.rule=Host(\`$url_PgAdmin_4\`) ## Url da Ferramenta
-          - traefik.http.services.pgadmin${1:+_$1}.loadbalancer.server.port=8080
+          - traefik.http.services.pgadmin${1:+_$1}.loadbalancer.server.port=80
           - traefik.http.routers.pgadmin${1:+_$1}.service=pgadmin${1:+_$1}
           - traefik.http.routers.pgadmin${1:+_$1}.tls.certresolver=letsencryptresolver
           - traefik.http.routers.pgadmin${1:+_$1}.entrypoints=websecure
@@ -8502,7 +8502,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.nocobase${1:+_$1}.rule=Host(\`$url_nocobase\`) ## Url da aplicação
-        - traefik.http.services.nocobase${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.nocobase${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.nocobase${1:+_$1}.service=nocobase${1:+_$1}
         - traefik.http.routers.nocobase${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.nocobase${1:+_$1}.entrypoints=websecure
@@ -9023,7 +9023,7 @@ services:
         - traefik.http.routers.wordpress_$nome_site_wordpress.entrypoints=websecure
         - traefik.http.routers.wordpress_$nome_site_wordpress.tls.certresolver=letsencryptresolver
         - traefik.http.routers.wordpress_$nome_site_wordpress.service=wordpress_$nome_site_wordpress
-        - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.server.port=8080
+        - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.server.port=80
         - traefik.http.services.wordpress_$nome_site_wordpress.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -9376,7 +9376,7 @@ services:
       - BASEROW_PUBLIC_URL=https://$url_baserow
 
       ## Porta do baserow
-      - BASEROW_CADDY_ADDRESSES=:8080
+      - BASEROW_CADDY_ADDRESSES=:80
 
       ## Dados SMTP
       - EMAIL_SMTP=true ## Ativar/Desativar SMTP
@@ -9406,7 +9406,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.baserow${1:+_$1}.rule=Host(\`$url_baserow\`)
-        - traefik.http.services.baserow${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.baserow${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.baserow${1:+_$1}.service=baserow${1:+_$1}
         - traefik.http.routers.baserow${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.baserow${1:+_$1}.entrypoints=websecure
@@ -10340,6 +10340,7 @@ services:
 
     ## Dados Postgress
       - DATABASE_URL=postgresql://postgres:$senha_postgres@postgres:5432/calcom${1:+_$1}
+      - DATABASE_DIRECT_URL=postgresql://postgres:$senha_postgres@postgres:5432/calcom${1:+_$1}
       - CALENDSO_ENCRYPTION_KEY=postgresql://postgres:$senha_postgres@postgres:5432/calcom${1:+_$1}
 
     ## Configurações de Email e SMTP
@@ -10654,7 +10655,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.mautic${1:+_$1}.rule=Host(\`$url_mautic\`) # substitua SeuDominio.com.br pelo seu domínio
-        - traefik.http.services.mautic${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.mautic${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.mautic${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.mautic${1:+_$1}.service=mautic${1:+_$1}
         - traefik.http.routers.mautic${1:+_$1}.tls.certresolver=letsencryptresolver
@@ -10985,7 +10986,7 @@ services:
         - traefik.http.routers.appsmith${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.appsmith${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.appsmith${1:+_$1}.service=appsmith${1:+_$1}
-        - traefik.http.services.appsmith${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.appsmith${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.services.appsmith${1:+_$1}.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -13337,7 +13338,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
   chatwoot_nestor${1:+_$1}_app:
-    image: sendingtk/chatwoot:latest ## Versão do Chatwoot
+    image: sendingtk/chatwoot:v3.13.8 ## Versão do Chatwoot
     command: bundle exec rails s -p 3000 -b 0.0.0.0
     entrypoint: docker/entrypoints/rails.sh
 
@@ -13444,7 +13445,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
   chatwoot_nestor${1:+_$1}_sidekiq:
-    image: sendingtk/chatwoot:latest ## Versão do Chatwoot
+    image: sendingtk/chatwoot:v3.13.8 ## Versão do Chatwoot
     command: bundle exec sidekiq -C config/sidekiq.yml
 
     volumes:
@@ -17380,7 +17381,7 @@ services:
       - $nome_rede_interna
 
     #ports:
-    #  - 1973:8080
+    #  - 1973:80
 
     environment:
       ## Dominio do Dashboard
@@ -17411,7 +17412,7 @@ services:
         - "traefik.http.routers.vaultwarden${1:+_$1}.rule=Host(\`$url_vaultwarden\`)"
         - "traefik.http.routers.vaultwarden${1:+_$1}.service=vaultwarden${1:+_$1}"
         - "traefik.http.routers.vaultwarden${1:+_$1}.entrypoints=websecure"
-        - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.server.port=8080"
+        - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.server.port=80"
         - "traefik.http.routers.vaultwarden${1:+_$1}.tls=true"
         - "traefik.http.routers.vaultwarden${1:+_$1}.tls.certresolver=letsencryptresolver"
         - "traefik.http.services.vaultwarden${1:+_$1}.loadbalancer.passhostheader=true"
@@ -17662,7 +17663,7 @@ services:
       - $nome_rede_interna
 
     #ports:
-    #  - 8282:8080
+    #  - 8282:80
 
     environment:
       ## Dados de acesso:
@@ -17691,7 +17692,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.nextcloud${1:+_$1}.rule=Host(\`$url_nextcloud\`)
-        - traefik.http.services.nextcloud${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.nextcloud${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.nextcloud${1:+_$1}.service=nextcloud${1:+_$1}
         - traefik.http.routers.nextcloud${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.nextcloud${1:+_$1}.entrypoints=web,websecure
@@ -18248,7 +18249,7 @@ services:
         - traefik.http.routers.phpmyadmin${1:+_$1}.rule=Host(\`$url_phpmyadmin\`)
         - traefik.http.routers.phpmyadmin${1:+_$1}.entrypoints=web,websecure
         - traefik.http.routers.phpmyadmin${1:+_$1}.tls.certresolver=letsencryptresolver
-        - traefik.http.services.phpmyadmin${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.phpmyadmin${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.phpmyadmin${1:+_$1}.service=phpmyadmin${1:+_$1}
 
 ## --------------------------- ORION --------------------------- ##
@@ -19712,7 +19713,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.http.routers.ntfy${1:+_$1}.rule=Host(\`$url_ntfy\`)
-        - traefik.http.services.ntfy${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.ntfy${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.routers.ntfy${1:+_$1}.service=ntfy${1:+_$1}
         - traefik.http.routers.ntfy${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.ntfy${1:+_$1}.entrypoints=websecure
@@ -21335,7 +21336,7 @@ services:
         - traefik.http.routers.humhub${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.humhub${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.humhub${1:+_$1}.service=humhub${1:+_$1}
-        - traefik.http.services.humhub${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.humhub${1:+_$1}.loadbalancer.server.port=80
         - traefik.http.services.humhub${1:+_$1}.loadbalancer.passHostHeader=true
 
 ## --------------------------- ORION --------------------------- ##
@@ -21605,7 +21606,7 @@ services:
         - traefik.http.routers.yourls${1:+_$1}.entrypoints=websecure
         - traefik.http.routers.yourls${1:+_$1}.tls.certresolver=letsencryptresolver
         - traefik.http.routers.yourls${1:+_$1}.service=yourls${1:+_$1}
-        - traefik.http.services.yourls${1:+_$1}.loadbalancer.server.port=8080
+        - traefik.http.services.yourls${1:+_$1}.loadbalancer.server.port=80
 
 ## --------------------------- ORION --------------------------- ##
 
@@ -26289,7 +26290,7 @@ services:
 ## --------------------------- ORION --------------------------- ##
 
  wuzapi${1:+_$1}:
-  image: ruben18salazar/wuzapi:api
+  image: setupautomatizado/wuzapi-server:latest
 
   volumes:
     - wuzapi${1:+_$1}_dbdata:/app/dbdata
